@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
 //this is perser for json data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+
 
 app.get('/', (req, res) => {
-    res.send("Server is running!");
+    res.render("index");
 });
 
 app.listen(5100,()=>{
